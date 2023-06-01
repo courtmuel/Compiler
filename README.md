@@ -35,3 +35,13 @@
 
 
 ## About The Project
+This was a semester long project that focused on the development of a fully functional compiler using C programming language. The overall objective of the project was to design and implement a fully functional compiler that is capable of translating source code written in a high-level programming language into an executable machine code.
+  
+Project stages: 
+- Lexical analysis / parsing 
+- Semantic analysis 
+- Intermediate code generation 
+- Optimization 
+- Code generation
+
+## Getting Started
