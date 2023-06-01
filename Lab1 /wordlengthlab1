@@ -1,0 +1,64 @@
+%{
+
+/*
+* This LEX routine uses a counting array to match alphabetic strings and make a frequency count.
+*
+* The real item to notice is that yywrap() is called at EOF and then is run to do what we need
+* to do. yywrap() returns true when we have a successful end to the program.  We may want to
+* return false (0) if we want to lexing process to fail
+*
+* Shaun Cooper
+* January 2015
+*
+*/
+
+/*
+* File: wordlengthlab1.l - LEX program takes directives and translates to C, counts frequency of letters found and total number of digits
+* Author: Courtney Mueller
+* Date: 08 / 24 / 2022
+* Algorithm: basic for loop that loops through - identifies and accounts for LEX directives present
+*            (letters / digits) increments when each letter is present, additionally it counts total number of digits present
+*
+* Changes made:
+* include [0-9]+ LEX directive to represent numbers so program can recognize when a number is identified
+* [a-zA-z]+ LEX directive denoting a regular expression that matches any letter (upper or lowercase)
+* [0-9]+ LEX directive denoting a regular expression that matches any digit 0 thru 9
+* .|\n LEX directive denoting nothing is to be done for symbols other than letters and digits
+*/
+
+
+int lgths[100];
+
+// global varaible to represent numbers
+int num;
+
+%}
+
+
+%%
+[a-zA-Z]+	lgths[yyleng]++;
+[0-9]+	  	num++;	
+.|\n	{ /* no action */ }
+%%
+
+// yywrap is ran at the end of the file (EOF) - called when LEX scanner reaches end of file for input 
+// changes made: added a print statement to print the TOTAL number of time a digit occurs 
+int yywrap()
+{
+	int i;
+	printf("Length  No. words  :\n");
+	for (i = 1; i < 100; i++)
+	{
+		if (lgths[i] > 0 )
+		{
+			printf("%5d%10d\n", i, lgths[i]);
+		} 
+	} 
+
+	printf("\nThere are %d numbers\n", num);
+	return(1);
+}
+
+int main()
+{  yylex();
+}
