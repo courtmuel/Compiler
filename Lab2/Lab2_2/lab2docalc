@@ -1,31 +1,29 @@
-/*                 Small LEX routine which returns two formal tokens (INTEGER and VARIABLE)
+/*
+                   Small LEX routine which returns two formal tokens (INTEGER and VARIABLE)
                    along with single string elements like '+'.
  
-                    This LEX definition is the companion to the docalc.y YACC routine which
+                   This LEX definition is the companion to the docalc.y YACC routine which
                    is a simple calculator
 
-                    Shaun Cooper
-                    January 2015
+                   Shaun Cooper
+                   January 2015
 */
 
 
-
-
-/*		   Name:  lab2docalc.l 
-
+/*		   
+             Name:  lab2docalc.l 
         	   Author: Courtney Mueller
- 	
         	   Date: 9 / 3 / 2022
+        	   Purpose: this program is a LEX file that accepts in integer and variable and single string elements the token 
+                      is then processed in a seperate YACC file 'lab2docalc.y' that will work as a token calculator.
 
-        	   Purpose: this program is a LEX file that accepts in integer and variable and single string elements 
-                            the token is then processed in a seperate YACC file 'lab2docalc.y' that will work 
-                            as a token calculator
+             Changes Made: 
+                      2022-03-09 (Courtney Mueller) ... change mydebug to 0 to turn off debugging information
+                      2022-01-09 (Courtney Mueller) ... make modification to delimiter rules to include rule for parentheses in rule 4
 */
+
 
 %{
-
-// 2022-03-09 (Courtney Mueller) ... change mydebug to 0 to turn off debugging information
-// 2022-01-09 (Courtney Mueller) ... make modification to delimiter rules to include rule for parentheses in rule 4
 int mydebug=0;
 #include "y.tab.h"
 %}
@@ -46,5 +44,3 @@ int mydebug=0;
 
 int yywrap(void)
 { return 1;}
-
-
