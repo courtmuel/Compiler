@@ -1,0 +1,68 @@
+ /*	simple lex program which removes comments from a source program
+	The main key is that a variable "comment" is set when the start of a comment
+	is seen and then unset when the ending set is seen.  It is possible to have
+	two starts closed by on end.
+
+	 Shaun Cooper
+	 January 2015
+ */
+
+
+
+ /*	
+	Name: lab2remove.l
+	Author: Courtney Mueller
+	Date: 9 / 4 / 2022 
+	Purpose: this is a LEX program that analyzes source code and removes comments
+	Changes made:	2022-03-09 (Courtney Mueller)... change made to turn on debugger/error messages 
+		     	2022-03-09 (Courtney Mueller)... change made to include extra variable to count lines
+			2022-03-09 (Courtney Mueller)... change made to add new rule for new lines
+			2022-04-09 (Courtney Mueller)... change made to have correct line number representation in error message
+ */
+
+        int comment = 0;
+
+	// 2022-03-09 (Courtney Mueller)... change made to turn on debugger/error messages
+        int debug=1;  /* prints out debug statements if desired */
+	
+	// 2022-03-09 (Courtney Mueller)... change made to include extra variable to count lines
+        // initalize variable to 1 because lines start at 1 not 0 
+	int lineCount=0;
+
+
+%%
+
+"\n"    {
+        // 2022-03-09 (Courtney Mueller)... change made to add new rule for new lines
+        // if '\n' is encountered program will got to newline as well as count line number
+        if (!comment) printf("%10d %s", lineCount++, yytext);
+        }
+
+
+
+"/*"	{
+	// 2022-04-09 (Courtney Mueller)... change made to have correct line number representation in error message
+	if (comment && debug) fprintf(stderr,
+			">>>>>>>> Error on line %d: Possible Nested comment <<<<<<<<<<\n", lineCount++);
+	comment = 1;
+	}
+
+"*/"	{
+          if (!comment) printf("%s",yytext); /*print out if it is not in a comment */
+  	  comment = 0;
+	}
+.       { if (!comment) printf("%s",yytext);}
+
+
+%%
+
+int yywrap(void)
+{ return 1;
+}
+
+int main()
+{
+  yylex();
+  
+}
+
