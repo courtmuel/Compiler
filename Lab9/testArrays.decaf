@@ -1,0 +1,30 @@
+extern func print_int (int) void;
+extern func print_string (string) void;
+extern func read_int () int;
+
+package foo {
+        //var y int =7;
+        //var Z int ;
+        //var A[100] int ;
+        //var x bool = true;
+
+        var a int = 5;
+    	var M[10] int;
+
+      func main (z int, f bool) void 
+      {
+
+	var x int;
+
+
+	M[1] = 7;
+	x = M[1] + 5; 
+	print_int(x);
+	
+	//M[2] = 5;
+        //var x[100] int; 
+        //x[3]= 1;
+    
+      } // of main
+
+} // of foo

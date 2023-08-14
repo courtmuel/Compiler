@@ -1,0 +1,61 @@
+extern func print_int (int) void;
+extern func print_string (string) void;
+extern func read_int () int;
+
+package foo 
+{
+	var y int = 7;
+        var Z int ;
+        var A[100] int ;
+        var x bool = true;
+	
+	var i int = 7;
+	var h int = 0;
+	var o int = 4;
+	
+	func main (z int, f bool) int
+      	{
+		print_string("hello world\n "); // test printing strings
+		print_string("test string! \n");
+                print_string("\n");
+		
+		print_int(10);
+		print_string("\n");
+	
+		print_int(20);
+                print_string("\n");
+
+		print_int(30);
+                print_string("\n");
+
+		print_int(i);
+                print_string("\n");
+
+		print_int(h);
+                print_string("\n");
+
+		print_int(o);
+                print_string("\n");
+		print_string("\n");
+
+		print_string("Test multiplication");
+		print_string("The output should be: 25\n");
+		print_string("Output: ");
+		print_int(5 * 5);
+		print_string("\n");
+
+		print_string("\nTest addition");
+                print_string("The output should be: 10\n");
+		print_string("Output: ");
+                print_int(5 + 5);
+		print_string("\n");
+
+		print_string("\nTest division");
+                print_string("The output should be: 2\n");
+                print_string("Output: ");
+		print_int(10 / 5);
+		print_string("\n");
+
+
+      	} // end of main
+} // end package foo 
